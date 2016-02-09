@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <UnityExportPath>$(ProjectDir)$(RelativeUnityPath)</UnityExportPath>
+    <DllPath>$(TargetDir)$(TargetName)</DllPath>
+  </PropertyGroup>
+  <Target Name="Export" AfterTargets="AfterBuild">
+    <!-- The target itself checks the conditions before running. -->
+    <CallTarget Targets="GenerateMonoSymbols"/>
+  </Target>
+  <!-- 
+      If Distribute Source is set to 'true' or 'True' in BuildConfig.xml 
+      this target will run and export the source instead of dlls. 
+  -->
+  <Target Name="ExportSource"
+          AfterTargets="Export"
+          Condition="'$(DistributeSource)' == 'true' Or  '$(DistributeSource)' == 'True'" >
+    <Message Text="[ExportOption]     : Source Code" Importance="high"/>
+
+    <!-- Find all the source files but ingnore the Properties and obj folders -->
+    <ItemGroup>
+      <SourceFiles Include="$(ProjectDir)**\*.cs"
+                   Exclude="$(ProjectDir)**\Properties\**\*.cs;$(ProjectDir)**\obj\**\*.cs;"/>
+    </ItemGroup>
+
+    <!-- Log a message for each file -->
+    <Message Text=" Export: %(SourceFiles.Filename).cs" Importance="high"/>
+    <Message Text="         src: %(SourceFiles.Identity).cs" Importance="high"/>
+    <Message Text="         dst: $(UnityExportPath)%(SourceFiles.Filename).cs" Importance="high"/>
+    <Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(UnityExportPath)"/>
+  </Target>
+  <!-- 
+      if Distribute Source is set to 'false' or 'False' in BuildConfig.xml this
+      target will be run and export dlls instead of the source.
+  -->
+  <Target Name="ExportDll"
+          AfterTargets="Export"
+          Condition="'$(DistributeSource)' == 'false' Or  '$(DistributeSource)' == 'False'" >
+    <Message Text="[Export Option]    : (DLL) Dynamic Link Library" Importance="high"/>
+
+    <Message Text=" Export: $(ProjectName).dll" Importance="high"/>
+    <Message Text="         src: $(DllPath).dll" Importance="high"/>
+    <Message Text="         dst: $(UnityExportPath)$(ProjectName).dll" Importance="high"/>
+    <Copy SourceFiles="$(DllPath).dll"     Condition="Exists('$(DllPath).dll')" DestinationFolder="$(UnityExportPath)"/>
+
+    <Message Text=" Export: $(ProjectName).pdb" Importance="high"/>
+    <Message Text="         src: $(DllPath).pdb" Importance="high"/>
+    <Message Text="         dst: $(UnityExportPath)$(ProjectName).pdb" Importance="high"/>
+    <Copy SourceFiles="$(DllPath).pdb"     Condition="Exists('$(DllPath).pdb')" DestinationFolder="$(UnityExportPath)"/>
+
+    <Message Text=" Export: $(ProjectName).dll.mdb" Importance="high"/>
+    <Message Text="         src: $(DllPath).dll.mdb" Importance="high"/>
+    <Message Text="         dst: $(UnityExportPath)$(ProjectName).dll.mdb" Importance="high"/>
+    <Copy SourceFiles="$(DllPath).dll.mdb" Condition="Exists('$(DllPath).dll.mdb')" DestinationFolder="$(UnityExportPath)"/>
+  </Target>
+</Project>

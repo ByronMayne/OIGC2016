@@ -8,11 +8,11 @@
   <!-- The export options wait for this target to be called before running. -->
   <Target Name="Export" AfterTargets="AfterBuild">
     <!-- Force the Mono Symbols to build (if they have too) -->
-    <CallTarget Targets="GenerateMonoSymbols"/>
+    <CallTarget Targets="GenerateMonoSymbols" Condition="'$(DistributeSource)' == 'false' Or  '$(DistributeSource)' == 'False'"/>
     <Message Condition="'$(DistributeSource)' == 'false' Or  '$(DistributeSource)' == 'False'" Text="[Export Option]    : (DLL) Dynamic Link Library" Importance="high"/>
     <Message Condition="'$(DistributeSource)' == 'true' Or  '$(DistributeSource)' == 'True'"  Text="[Export Option]    : Source Code" Importance="high"/>
   </Target>
   <!-- Import our export options -->
-  <Import Project="$(ProjectDir)\Properties\MSBuild\Export\ExportDll.xml"/>
-  <Import Project="$(ProjectDir)\Properties\MSBuild\Export\ExportSource.xml"/>
+  <Import Project="$(ProjectDir)\MSBuild\Export\ExportDll.xml"/>
+  <Import Project="$(ProjectDir)\MSBuild\Export\ExportSource.xml"/>
 </Project>

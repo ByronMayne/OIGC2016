@@ -17,7 +17,7 @@
     <UnityEngineHint>$(UnityPathLibsDir)UnityEngine.dll</UnityEngineHint>
     <UnityEditorHint>$(UnityPathLibsDir)UnityEditor.dll</UnityEditorHint>
   </PropertyGroup>
-  <!-- Using the paths we defined above we include them in as referecnes. -->
+  <!-- Using the paths we defined above we include them in as references. -->
   <ItemGroup>
     <!-- The Include part is just the label you see I add the version number to make it clear -->
     <Reference Include="UnityEditor [$(UnityVersion)]">

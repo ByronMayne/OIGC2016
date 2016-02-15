@@ -13,7 +13,7 @@
     <RelativeUnityPath>..\..\proj.unity\Assets\Libraries\OIGC2016\</RelativeUnityPath>
   </PropertyGroup>
   <!-- This is a list of XML files that we want to also include in the build process. -->
-  <Import Project="$(ProjectDir)/Properties/MSBuild/GenerateMonoSymbols.xml"/>
-  <Import Project="$(ProjectDir)/Properties/MSBuild/ResolveUnityReference.xml"/>
-  <Import Project="$(ProjectDir)/Properties/MSBuild/Export/Export.xml"/>
+  <Import Project="$(ProjectDir)/MSBuild/GenerateMonoSymbols.xml"/>
+  <Import Project="$(ProjectDir)/MSBuild/ResolveUnityReference.xml"/>
+  <Import Project="$(ProjectDir)/MSBuild/Export/Export.xml"/>
 </Project>

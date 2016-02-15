@@ -5,8 +5,7 @@ using System.Text;
 
 namespace OIGC2016
 {
-  class ExampleClass
+  class Human
   {
-    public float m_Value;
   }
 }

@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!-- This XML file is include in the csproj. It's the entry point to all our build extensions -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Property Groups are used to define varaibles in MSBuild -->
+  <!-- Property Groups are used to define variables in MSBuild -->
   <PropertyGroup>
     <!-- The version of Unity that we are using -->
     <UnityVersion>5.3.1f1</UnityVersion>
     <!-- Should we export the source or build dlls? -->
-    <DistributeSource>false</DistributeSource>
+    <DistributeSource>true</DistributeSource>
     <!-- Should we run pdb2mdb on windows? -->
     <GenerateMonoSymbols>true</GenerateMonoSymbols>
-    <!-- Starting from the project dir where does the Unity path start? -->
+    <!-- Starting from the $(ProjectDir) where does the Unity path start? -->
     <RelativeUnityPath>..\..\proj.unity\Assets\Libraries\OIGC2016\</RelativeUnityPath>
   </PropertyGroup>
   <!-- This is a list of XML files that we want to also include in the build process. -->
   <Import Project="$(ProjectDir)/Properties/MSBuild/GenerateMonoSymbols.xml"/>
   <Import Project="$(ProjectDir)/Properties/MSBuild/ResolveUnityReference.xml"/>
-  <Import Project="$(ProjectDir)/Properties/MSBuild/ExportToUnity.xml"/>
+  <Import Project="$(ProjectDir)/Properties/MSBuild/Export/Export.xml"/>
 </Project>

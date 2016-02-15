@@ -35,11 +35,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExampleClass.cs" />
+    <Compile Include="Human.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\MSBuild\BuildConfig.xml" />
-    <Content Include="Properties\MSBuild\ExportToUnity.xml" />
+    <Content Include="Properties\MSBuild\Export\ExportDll.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Properties\MSBuild\Export\ExportSource.xml" />
+    <Content Include="Properties\MSBuild\Export\Export.xml" />
     <Content Include="Properties\MSBuild\GenerateMonoSymbols.xml" />
     <Content Include="Properties\MSBuild\ResolveUnityReference.xml" />
   </ItemGroup>

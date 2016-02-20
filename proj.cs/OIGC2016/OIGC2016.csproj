@@ -39,6 +39,7 @@
     <Compile Include="Unity Features\Examples\LevelEditorSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MSBuild\BuildDivergents.xml" />
     <Content Include="MSBuild\BuildConfig.xml" />
     <Content Include="MSBuild\Export\ExportDll.xml">
       <SubType>Designer</SubType>
@@ -50,5 +51,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- The entry point for our custom build scripts -->
   <Import Project="$(ProjectDir)\MSBuild\BuildConfig.xml" />
 </Project>

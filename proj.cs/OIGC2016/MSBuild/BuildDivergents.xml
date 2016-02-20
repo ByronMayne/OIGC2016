@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- This XML file is include in the csproj. It's the entry point to all our build extensions -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <IsDivergent>false</IsDivergent>
+  </PropertyGroup>
+  <Target Name="BuildDivergents"
+          AfterTargets="AfterBuild"
+          Condition="'$(IsDivergent)'=='false' And '$(DistributeSource)' == 'false'"
+          Inputs="@(Divergent)"
+          Outputs="@(Divergent -> '%(DestDir)$*TargetFilename)')">
+    <Message Text="[Build Divergent]   : $(TargetName).%(Divergent.Identity)" Importance="high"/>
+    <MSBuild Projects="$(ProjectPath)" Properties="DefineConstants=%(Divergent.Constants);IsDivergent=true;RelativeUnityPath=%(Divergent.RelativeUnityPath)"/>
+  </Target>
+</Project>

@@ -6,30 +6,32 @@
     <!-- The version of Unity that we are using -->
     <UnityVersion>5.3.1f1</UnityVersion>
     <!-- Should we export the source or build dlls? -->
-    <DistributeSource>false</DistributeSource>
+    <DistributeSource>true</DistributeSource>
     <!-- Should we run pdb2mdb on windows? -->
     <GenerateMonoSymbols>false</GenerateMonoSymbols>
+    <!-- Should we build divergents? -->
+    <ProcessBuildTargets>true</ProcessBuildTargets>
     <!-- Starting from the $(ProjectDir) where does the Unity path start? -->
     <RelativeUnityPath>..\..\proj.unity\Assets\Libraries\OIGC2016\</RelativeUnityPath>
   </PropertyGroup>
   <!-- A list of platforms we want to compile this library too (Only works for dlls)-->
   <ItemGroup>
-    <Divergent Include="Android">
+    <BuildTarget Include="Android">
       <Constants>UNITY_ANDROID</Constants>
       <RelativeUnityPath>..\..\proj.unity\Assets\Libraries\OIGC2016\Android\</RelativeUnityPath>
-    </Divergent>
-    <Divergent Include="iOS">
+    </BuildTarget>
+    <BuildTarget Include="iOS">
       <Constants>UNITY_IOS</Constants>
       <RelativeUnityPath>..\..\proj.unity\Assets\Libraries\OIGC2016\iOS\</RelativeUnityPath>
-    </Divergent>
-    <Divergent Include="Editor">
+    </BuildTarget>
+    <BuildTarget Include="Editor">
       <Constants>UNITY_EDITOR</Constants>
       <RelativeUnityPath>..\..\proj.unity\Assets\Libraries\OIGC2016\Editor\</RelativeUnityPath>
-    </Divergent>
+    </BuildTarget>
   </ItemGroup>
   <!-- This is a list of XML files that we want to also include in the build process. -->
-  <Import Project="$(ProjectDir)/MSBuild/GenerateMonoSymbols.xml"/>
   <Import Project="$(ProjectDir)/MSBuild/ResolveUnityReference.xml"/>
-  <Import Project="$(ProjectDir)/MSBuild/BuildDivergents.xml"/>
   <Import Project="$(ProjectDir)/MSBuild/Export/Export.xml"/>
+  <Import Project="$(ProjectDir)/MSBuild/GenerateMonoSymbols.xml"/>
+  <Import Project="$(ProjectDir)/MSBuild/ProcessBuildTargets.xml"/>
 </Project>

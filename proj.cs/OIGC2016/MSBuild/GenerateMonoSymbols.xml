@@ -14,7 +14,7 @@
     <pdb2mdbPath>$(ProjectDir)lib\MonoBleedingEdge\4.0\pdb2mdb.exe</pdb2mdbPath>
   </PropertyGroup>
   <Target Name="GenerateMonoSymbols"  
-          Condition="'$(OS)' != 'Unix' And ( '$(GenerateMonoSymbols)' =='true' Or '$(GenerateMonoSymbols)' == 'True' ) ">
+    Condition="'$(OS)' != 'Unix' And ( '$(GenerateMonoSymbols)' =='true' Or '$(GenerateMonoSymbols)' == 'True' ) ">
     <Message Condition="Exists('$(pdb2mdbPath)')" Text="[pdb2mdb.exe]      : Converting Pdb to Mdb for $(TargetFileName)" Importance="high"/>
     <!-- Run pdb2mdb.exe if it exists -->
     <Exec    Condition="Exists('$(pdb2mdbPath)')" Command="&quot;$(pdb2mdbPath)&quot; $(AssemblyName).dll" WorkingDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" />

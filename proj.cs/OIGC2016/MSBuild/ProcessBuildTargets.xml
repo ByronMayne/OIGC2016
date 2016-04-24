@@ -4,13 +4,13 @@
   <PropertyGroup>
     <IsBuildTarget>false</IsBuildTarget>
   </PropertyGroup>
-  <Target Name="IsBuildTarget"
+  <Target Name="ProcessBuildTargets"
           AfterTargets="AfterBuild"
           Condition="'$(IsBuildTarget)'=='false' And '$(DistributeSource)' == 'false' And ( '$(ProcessBuildTargets)' == 'True' And '$(ProcessBuildTargets)' == 'true' )"
           Inputs="@(BuildTarget)"
           Outputs="@(BuildTarget -> '%(DestDir)$*TargetFilename)')">
-    <Message Text="[Build Divergent]   : $(TargetName).%(Divergent.Identity)" Importance="high"/>
+    <Message Text="[Process Build Target]   : $(TargetName).%(BuildTarget.Identity)" Importance="high"/>
     <!-- Force the Build Process to run again but this time we define new variables. -->
-    <MSBuild Projects="$(ProjectPath)" Properties="DefineConstants=%(Divergent.Constants);IsBuildTarget=true;RelativeUnityPath=%(Divergent.RelativeUnityPath)"/>
+    <MSBuild Projects="$(ProjectPath)" Properties="DefineConstants=%(BuildTarget.Constants);IsBuildTarget=true;RelativeUnityPath=%(BuildTarget.RelativeUnityPath)"/>
   </Target>
 </Project>

@@ -10,7 +10,7 @@
     <!-- Should we run pdb2mdb on windows? -->
     <GenerateMonoSymbols>false</GenerateMonoSymbols>
     <!-- Should we build divergents? -->
-    <ProcessBuildTargets>true</ProcessBuildTargets>
+    <ProcessBuildTargets>false</ProcessBuildTargets>
     <!-- Starting from the $(ProjectDir) where does the Unity path start? -->
     <RelativeUnityPath>..\..\proj.unity\Assets\Libraries\OIGC2016\</RelativeUnityPath>
   </PropertyGroup>

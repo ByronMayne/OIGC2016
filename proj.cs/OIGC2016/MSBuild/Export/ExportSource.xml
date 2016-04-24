@@ -21,5 +21,6 @@
     <Message Text="         src: %(SourceFiles.Identity).cs" Importance="high"/>
     <Message Text="         dst: $(UnityExportPath)%(RecursiveDir)%(SourceFiles.Filename).cs" Importance="high"/>
     <Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(UnityExportPath)%(RecursiveDir)"/>
+    <!-- WRONG! -->
   </Target>
 </Project>
